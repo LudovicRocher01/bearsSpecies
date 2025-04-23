@@ -1,9 +1,11 @@
 <div class = "face-snap-card" [ngClass]="{ snapped: isSnapped }">
-    <h2>{{ faceSnap.title | uppercase}}</h2>
-    <p>Localisation : {{ faceSnap.location | titlecase }}</p>
-    <p>{{ faceSnap.description }}</p>
-    <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title">
-    <p>Régime : {{ faceSnap.regime }}</p>
+    <button (click)="goToDetails()">
+        <h2>{{ faceSnap.title | uppercase}}</h2>
+        <p>Localisation : {{ faceSnap.location | titlecase }}</p>
+        <p>{{ faceSnap.description }}</p>
+        <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title">
+        <p>Régime : {{ faceSnap.regime }}</p>
+    </button>
     <p>
         <span [ngStyle]="{ color: 'rgb(0, ' + faceSnap.snaps + ', 0)' }">👍 {{ faceSnap.snaps }}</span>        
         <button (click)="onSnap()">{{ buttonText }}</button>
