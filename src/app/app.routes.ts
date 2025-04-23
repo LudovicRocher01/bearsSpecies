@@ -1,3 +1,5 @@
 import { Routes } from '@angular/router';
-
-export const routes: Routes = [];
+import { FaceSnapListComponent } from './face-snap-list/face-snap-list.component';
+export const routes: Routes = [
+    { path: '', component: FaceSnapListComponent },
+];

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FaceSnap } from '../models/face-snap';
 import { NgStyle, NgClass, UpperCasePipe, TitleCasePipe } from '@angular/common'
+import { FaceSnapService } from '../services/face-snaps.service';
 
 @Component({
   selector: 'app-face-snap',
@@ -19,21 +20,31 @@ export class FaceSnapComponent implements OnInit {
   isSnapped!: boolean;
   buttonText!: string;
 
+  constructor(private FaceSnapsService: FaceSnapService) {}
+
   ngOnInit(): void{
     this.isSnapped = false;
-    this.buttonText = 'Snap'
+    this.buttonText = 'Like'
   };
 
   onSnap() {
     if (!this.isSnapped) {
-      this.faceSnap.addSnap();
-      this.buttonText = 'Snoup !'
-      this.isSnapped = true;
+      this.snap()
     }
     else {
-      this.faceSnap.removeSnap();
-      this.buttonText = 'Snap';
-      this.isSnapped = false;
+      this.unsnap()
     }
+  }
+
+  snap() {
+    this.FaceSnapsService.snapFaceSnapById(this.faceSnap.id, 'like');
+    this.buttonText = 'Unlike !'
+    this.isSnapped = true;
+  }
+
+  unsnap() {
+    this.FaceSnapsService.snapFaceSnapById(this.faceSnap.id, 'unlike');
+    this.buttonText = 'Like';
+    this.isSnapped = false;
   }
 }
